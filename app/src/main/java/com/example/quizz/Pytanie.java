@@ -5,6 +5,17 @@ public class Pytanie {
     private boolean poprawnaOdpowiedz;
     private String podpowiedz;
     private boolean czyOdpowiedzianoPoprawnie;
+    private int idObrazka;
+
+
+    public Pytanie(String tresc, boolean poprawnaOdpowiedz, String podpowiedz, int idObrazka) {
+        this.tresc = tresc;
+        this.poprawnaOdpowiedz = poprawnaOdpowiedz;
+        this.podpowiedz = podpowiedz;
+        this.idObrazka = idObrazka;
+        czyOdpowiedzianoPoprawnie = false;
+
+    }
 
     public Pytanie(String tresc, boolean poprawnaOdpowiedz, String podpowiedz) {
         this.tresc = tresc;
@@ -12,6 +23,10 @@ public class Pytanie {
         this.podpowiedz = podpowiedz;
         czyOdpowiedzianoPoprawnie = false;
 
+    }
+
+    public int getIdObrazka() {
+        return idObrazka;
     }
 
     public void setCzyOdpowiedzianoPoprawnie(boolean czyOdpowiedzianoPoprawnie) {

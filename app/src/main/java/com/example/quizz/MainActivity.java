@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonHint;
     private ArrayList<Pytanie> pytania = new ArrayList<>();
     private int numerWyswietlanegoPytania = 0;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +33,13 @@ public class MainActivity extends AppCompatActivity {
         buttonN = findViewById(R.id.buttonNie);
         buttonNext = findViewById(R.id.buttonNext);
         buttonHint = findViewById(R.id.buttonHint);
+        imageView = findViewById(R.id.imageView);
 
-        pytania.add(new Pytanie("Czy Niedźwiedź polarny je pingwiny?", false,"Zastanów się gdzie każde zwierzę żyje"));
-        pytania.add(new Pytanie("Czy żyrafa może polizać się po uchu?", true, "Żyrafy mają bardzo długi język"));
-        pytania.add(new Pytanie("Zebry śpią na leżąco?", false, "???"));
+        pytania.add(new Pytanie("Czy Niedźwiedź polarny je pingwiny?", false,"Zastanów się gdzie każde zwierzę żyje", R.drawable.polarbear));
+        pytania.add(new Pytanie("Czy żyrafa może polizać się po uchu?", true, "Żyrafy mają bardzo długi język", R.drawable.giraffe));
+        pytania.add(new Pytanie("Zebry śpią na leżąco?", false, "???", R.drawable.zebra));
 
-        textViewPytanie.setText(pytania.get(0).getTresc());
+        wyswietlPytanie(0);
 
         buttonT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     textViewPytanie.setText("ilość zdobytych punktów: " + String.valueOf(podliczPunkty()) + "/3");
                 }
                 else{
-                    textViewPytanie.setText(pytania.get(numerWyswietlanegoPytania).getTresc());
+                    wyswietlPytanie(numerWyswietlanegoPytania);
                 }
             }
         });
@@ -100,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return suma;
+    }
+
+    private void wyswietlPytanie(int i){
+        textViewPytanie.setText(pytania.get(i).getTresc());
+        imageView.setImageResource(pytania.get(i).getIdObrazka());
     }
 
 
